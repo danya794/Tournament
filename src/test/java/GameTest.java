@@ -53,47 +53,31 @@ class GameTest {
     @Test
     public void WhenFirstPlayerNotFoundTest() {
         Game game = new Game();
-        Player petya = new Player(1, "Петя", 100);
+        Player petya = new Player(1, "Петя", 120);
         Player dima = new Player(2, "Дима", 100);
 
-        //game.register(petya);
+        game.register(petya);
         game.register(dima);
 
-        int actual = game.round("Петя", "Дима");
-        int expected = 0;
+        //int actual = game.round("Петя", "Дима");
+        //int expected = 1;
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertThrows(RuntimeException.class, () -> game.round("Антон", "Дима"));
     }
 
     @Test
     public void WhenSecondPlayerNotFoundTest() {
         Game game = new Game();
-        Player petya = new Player(1, "Петя", 100);
+        Player petya = new Player(1, "Петя", 120);
         Player dima = new Player(2, "Дима", 100);
 
         game.register(petya);
         game.register(dima);
 
-        int actual = game.round("Петя", "Дима");
-        int expected = 0;
+        //int actual = game.round("Петя", "Антон");
+        //int expected = 1;
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertThrows(RuntimeException.class, () -> game.round("Петя", "Антон"));
     }
-
-    @Test
-    public void WhenNobodyFoundTest() {
-        Game game = new Game();
-        Player petya = new Player(1, "Петя", 100);
-        Player dima = new Player(2, "Дима", 100);
-
-        game.register(petya);
-        game.register(dima);
-
-        int actual = game.round("Петя", "Дима");
-        int expected = 0;
-
-        Assertions.assertEquals(expected, actual);
-    }
-
 
 }
